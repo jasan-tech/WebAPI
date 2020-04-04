@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
 namespace WebApi.Models
 {
     public class MotionRepo 
@@ -16,7 +14,7 @@ namespace WebApi.Models
         }
         public Motion Get(string id)
         {
-            return motions.Find(m => m.id == id);
+            return motions.Find(m => m.m_id == id);
         }
         public IEnumerable<Motion> GetAll()
         {
@@ -27,10 +25,10 @@ namespace WebApi.Models
             motions.Add(v);
             return true;
         }
-        public bool Remove(Object o)
+        public bool Remove(Motion mtn)
         {
-            Motion mtn = (Motion) o;
-            int index = motions.FindIndex(v => v.id == mtn.id);
+
+            int index = motions.FindIndex(m => m.m_id == mtn.m_id);
             if(index == -1)
             {
                 return false;
@@ -45,7 +43,7 @@ namespace WebApi.Models
         } 
         public bool Update(Motion mtn)
         {
-            int index = motions.FindIndex(v => v.id == mtn.id);
+            int index = motions.FindIndex(m => m.m_id == mtn.m_id);
             if (index == -1)
             {
                 return false;

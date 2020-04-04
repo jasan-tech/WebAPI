@@ -27,7 +27,7 @@ namespace WebApi.Controllers
         }
         // POST: api/Motion
         [Microsoft.AspNetCore.Mvc.HttpPost]
-        public bool PostMotion([System.Web.Http.FromBody] Motion mtn)
+        public HttpResponseMessage PostMotion([System.Web.Http.FromBody] Motion mtn)
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
@@ -36,12 +36,12 @@ namespace WebApi.Controllers
             {
                 Debug.WriteLine(response.StatusCode);
                 motion_repo.Add(mtn);
-                return true;
+                return response;
             }
             else
             {
                 Debug.WriteLine(response.StatusCode);
-                return false;
+                return response;
             }
         }
         [Microsoft.AspNetCore.Mvc.HttpDelete]

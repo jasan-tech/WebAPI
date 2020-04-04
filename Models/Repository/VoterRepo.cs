@@ -14,7 +14,7 @@ namespace WebApi.Models
         }
         public Voter Get(string id)
         {
-            return voters.Find(v => v.id == id);
+            return voters.Find(v => v.v_id == id);
         }
         public IEnumerable<Voter> GetAll()
         {
@@ -27,7 +27,7 @@ namespace WebApi.Models
         }
         public bool Remove(Voter vtr)
         {
-            int index = voters.FindIndex(v => v.id == vtr.id);
+            int index = voters.FindIndex(v => v.v_id == vtr.v_id);
             if(index == -1)
             {
                 return false;
@@ -41,7 +41,7 @@ namespace WebApi.Models
         } 
         public bool Update(Voter vtr)
         {
-           int index = voters.FindIndex(v => v.id == vtr.id);
+           int index = voters.FindIndex(v => v.v_id == vtr.v_id);
             if (index == -1)
             {
                 return false;

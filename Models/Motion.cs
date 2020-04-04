@@ -8,12 +8,12 @@ namespace WebApi.Models
     {
         
         [DataMember]
-        public string id { get; set; }
+        public string m_id { get; set; }
         [DataMember]
         public string text { get; set; }
         public Motion(string id, string text)
         {
-            this.id = id;
+            m_id = id;
             this.text = text;
         }
 

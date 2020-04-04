@@ -7,11 +7,11 @@ namespace WebApi.Models
     {
         
         [DataMember]
-        public string id { get; set; }
+        public string v_id { get; set; }
 
-        public Voter(string v)
+        public Voter(string id)
         {
-            this.id = v;
+           v_id = id;
         }
 
         public Voter()
