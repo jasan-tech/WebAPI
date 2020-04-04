@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using System.Web.Http;
 using System.Diagnostics;
-using System;
 using System.Net;
 using System.Net.Http;
 using WebAPI.Models;
@@ -32,12 +31,10 @@ namespace WebApi.Controllers
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
-            var response = request.CreateResponse<VotingRecord>(HttpStatusCode.Created, record);
-            vr_repo.Add(record);
-            Debug.WriteLine(response.StatusCode);
-            if(response.StatusCode.Equals("Ok"))
+            var response = request.CreateResponse<VotingRecord>(HttpStatusCode.OK, record);
+            if(response.StatusCode.ToString().Equals("OK"))
             {
-                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine("okokokokok ::: "+response.StatusCode);
                 vr_repo.Add(record);
                 return true;
             }
@@ -56,15 +53,15 @@ namespace WebApi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
         // PUT: api/Voter/5
         [Microsoft.AspNetCore.Mvc.HttpPut]
-        public bool PutVoter([System.Web.Http.FromBody] Voter vtr)
+        public bool PutVoter([System.Web.Http.FromBody] VotingRecord record)
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
-            var response = request.CreateResponse<Voter>(HttpStatusCode.Created, vtr);
-            if(response.StatusCode.Equals("Ok"))
+            var response = request.CreateResponse<VotingRecord>(HttpStatusCode.OK, record);
+            if(response.StatusCode.ToString().Equals("OK"))
             {
                 Debug.WriteLine(response.StatusCode);
-                vr_repo.Update(vtr);
+                vr_repo.Update(record);
                 return true;
             }
             else

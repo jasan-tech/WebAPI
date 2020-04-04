@@ -7,10 +7,9 @@ namespace WebApi.Models
         public readonly List<Motion> motions = new List<Motion>();
         public MotionRepo()
         {
-            motions.Add(new Motion("v1","Hello"));
-            motions.Add(new Motion("v2","Hai"));
-            motions.Add(new Motion("v3","Bye"));
-
+            motions.Add(new Motion("m1","Motion-1"));
+            motions.Add(new Motion("m2","Motion-2"));
+            motions.Add(new Motion("m3","Motion-3"));
         }
         public Motion Get(string id)
         {

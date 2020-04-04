@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using System.Web.Http;
 using System.Diagnostics;
-using System;
 using System.Net;
 using System.Net.Http;
 
@@ -17,6 +16,7 @@ namespace WebApi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpGet]
         public IEnumerable<Voter> GetAllVoters()
         {
+            Debug.WriteLine("");
             return voter_repo.GetAll();
         }
         // GET: api/Voter/5
@@ -32,11 +32,8 @@ namespace WebApi.Controllers
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
-            var response = request.CreateResponse<Voter>(HttpStatusCode.Created, vtr);
-            voter_repo.Add(vtr);
-            Debug.WriteLine(voter_repo.voters.Count);
-            Debug.WriteLine(response.StatusCode);
-            if(response.StatusCode.Equals("Ok"))
+            var response = request.CreateResponse<Voter>(HttpStatusCode.OK, vtr);
+            if(response.StatusCode.ToString().Equals("OK"))
             {
                 Debug.WriteLine(response.StatusCode);
                 voter_repo.Add(vtr);

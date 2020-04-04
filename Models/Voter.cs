@@ -16,6 +16,7 @@ namespace WebApi.Models
 
         public Voter()
         {
+
         }
     }
 }

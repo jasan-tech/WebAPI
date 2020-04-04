@@ -27,21 +27,21 @@ namespace WebApi.Controllers
         }
         // POST: api/Motion
         [Microsoft.AspNetCore.Mvc.HttpPost]
-        public HttpResponseMessage PostMotion([System.Web.Http.FromBody] Motion mtn)
+        public bool PostMotion([System.Web.Http.FromBody] Motion mtn)
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
-            var response = request.CreateResponse<Motion>(HttpStatusCode.Created, mtn);
-            if(response.StatusCode.Equals("Ok"))
+            var response = request.CreateResponse<Motion>(HttpStatusCode.OK, mtn);
+            if(response.StatusCode.ToString().Equals("OK"))
             {
                 Debug.WriteLine(response.StatusCode);
                 motion_repo.Add(mtn);
-                return response;
+                return true;
             }
             else
             {
                 Debug.WriteLine(response.StatusCode);
-                return response;
+                return false;
             }
         }
         [Microsoft.AspNetCore.Mvc.HttpDelete]
@@ -62,16 +62,16 @@ namespace WebApi.Controllers
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
-            var response = request.CreateResponse<Motion>(HttpStatusCode.Created, mtn);
-            if(response.StatusCode.Equals("Ok"))
+            var response = request.CreateResponse<Motion>(HttpStatusCode.OK, mtn);
+            if(response.StatusCode.ToString().Equals("OK"))
             {
-                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine("if : "+response.StatusCode);
                 motion_repo.Update(mtn);
                 return true;
             }
             else
             {
-                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine("Else:"+response.StatusCode);
                 return false;
             }
         }

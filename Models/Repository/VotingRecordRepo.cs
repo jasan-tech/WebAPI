@@ -8,13 +8,14 @@ namespace WebApi.Models
         public readonly List<VotingRecord> votingRecordList = new List<VotingRecord>();
         public VoterRecordRepo()
         {
-            votingRecordList.Add(new VotingRecord("v1", "m1", "s1"));
-            votingRecordList.Add(new VotingRecord("v2", "m2", "s2"));
-            votingRecordList.Add(new VotingRecord("v3", "m3", "s3"));
+            votingRecordList.Add(new VotingRecord("v1", "m1", "rd1",true, false));
+            votingRecordList.Add(new VotingRecord("v2", "m2", "rd2",false,  true));
+            votingRecordList.Add(new VotingRecord("v3", "m3", "rd3",true,false));
+            votingRecordList.Add(new VotingRecord("rd4"));
         }
         public VotingRecord Get(string id)
         {
-          VotingRecord vr = votingRecordList.Find(v => v.vid == id);
+          VotingRecord vr = votingRecordList.Find(v => v.rd_id == id);
             return vr;
         }
         public IEnumerable<VotingRecord> GetAll()
@@ -23,7 +24,6 @@ namespace WebApi.Models
         }
         public bool Add(VotingRecord vr)
         {
-            
             votingRecordList.Add(vr);
             return true;
         }
@@ -31,7 +31,7 @@ namespace WebApi.Models
         { 
             votingRecordList.RemoveRange(0, votingRecordList.Count);
         }
-        public bool Update(Voter vtr)
+        public bool Update(VotingRecord record)
         {
             return false;
         }

@@ -20,10 +20,19 @@ namespace WebAPI
        [HttpPut("{id}")]
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete()
+        [HttpDelete]
+        public bool Delete()
         {
             WebApi.Controllers.VotingRecordController.vr_repo.RemoveAll();
+            int count = WebApi.Controllers.VotingRecordController.vr_repo.GetAll().Count();
+            if(count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
         }
     }
 }
