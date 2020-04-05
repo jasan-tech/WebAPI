@@ -34,13 +34,12 @@ namespace WebApi.Controllers
             var response = request.CreateResponse<VotingRecord>(HttpStatusCode.OK, record);
             if(response.StatusCode.ToString().Equals("OK"))
             {
-                Debug.WriteLine("okokokokok ::: "+response.StatusCode);
                 vr_repo.Add(record);
                 return true;
             }
             else
             {
-                Debug.WriteLine(response.StatusCode);
+                
                 return false;
             }
         } 
@@ -53,20 +52,19 @@ namespace WebApi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
         // PUT: api/Voter/5
         [Microsoft.AspNetCore.Mvc.HttpPut]
-        public bool PutVoter([System.Web.Http.FromBody] VotingRecord record)
+        public bool PutVotingRecord([System.Web.Http.FromBody] VotingRecord record)
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
             var response = request.CreateResponse<VotingRecord>(HttpStatusCode.OK, record);
             if(response.StatusCode.ToString().Equals("OK"))
             {
-                Debug.WriteLine(response.StatusCode);
                 vr_repo.Update(record);
                 return true;
             }
             else
             {
-                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine("Else:" + response.StatusCode);
                 return false;
             }
         }

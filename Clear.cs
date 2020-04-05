@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,9 @@ namespace WebAPI
         [HttpDelete]
         public bool Delete()
         {
+            Debug.WriteLine("Tried to execute");
+            WebApi.Controllers.MotionController.motion_repo.RemoveAll();
+            WebApi.Controllers.VoterController.voter_repo.RemoveAll();
             WebApi.Controllers.VotingRecordController.vr_repo.RemoveAll();
             int count = WebApi.Controllers.VotingRecordController.vr_repo.GetAll().Count();
             if(count == 0)

@@ -43,7 +43,7 @@ namespace WebApi.Models
         public bool Update(Motion mtn)
         {
             int index = motions.FindIndex(m => m.m_id == mtn.m_id);
-            if (index == -1)
+            if(index == -1)
             {
                 return false;
             }

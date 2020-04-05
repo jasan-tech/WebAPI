@@ -28,20 +28,21 @@ namespace WebApi.Controllers
         }
         // POST: api/Voter
         [Microsoft.AspNetCore.Mvc.HttpPost]
-    public bool PostVoter([System.Web.Http.FromBody] Voter vtr)
+    public bool PostVoter([System.Web.Http.FromBody]Voter vtr)
         {
+            
             HttpRequestMessage request = new HttpRequestMessage();
             request.SetConfiguration(new HttpConfiguration());
             var response = request.CreateResponse<Voter>(HttpStatusCode.OK, vtr);
             if(response.StatusCode.ToString().Equals("OK"))
             {
-                Debug.WriteLine(response.StatusCode);
+                
                 voter_repo.Add(vtr);
                 return true;
             }
             else
             {
-                Debug.WriteLine(response.StatusCode);
+                
                 return false;
             }
         } 

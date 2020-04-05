@@ -10,7 +10,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
-    public class MotionController : ApiController
+    public class MotionController : Controller
     {
         public static readonly MotionRepo motion_repo = new MotionRepo();
         [Microsoft.AspNetCore.Mvc.HttpGet]
@@ -34,13 +34,12 @@ namespace WebApi.Controllers
             var response = request.CreateResponse<Motion>(HttpStatusCode.OK, mtn);
             if(response.StatusCode.ToString().Equals("OK"))
             {
-                Debug.WriteLine(response.StatusCode);
+                
                 motion_repo.Add(mtn);
                 return true;
             }
             else
             {
-                Debug.WriteLine(response.StatusCode);
                 return false;
             }
         }
@@ -64,14 +63,12 @@ namespace WebApi.Controllers
             request.SetConfiguration(new HttpConfiguration());
             var response = request.CreateResponse<Motion>(HttpStatusCode.OK, mtn);
             if(response.StatusCode.ToString().Equals("OK"))
-            {
-                Debug.WriteLine("if : "+response.StatusCode);
+            {   
                 motion_repo.Update(mtn);
                 return true;
             }
             else
             {
-                Debug.WriteLine("Else:"+response.StatusCode);
                 return false;
             }
         }
